@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+showtask
+{% endblock %}
+
+{% block content %}
+  <h3 class="text-center p-3">Showing All Task</h3>
+  {% if allTasks %}
+  
+<table class="table table-bordered table-striped table-secondary mx-auto" style="width: 80%;">
+  <thead class="table-dark">
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in allTasks %}
+    {% if task.is_completed == False %}
+    <tr>
+      <td>{{task.id}}</td>
+      <td>{{task.title}}</td>
+      <td>{{task.description}}</td>
+      {% if task.is_completed == False%}
+      <td>Incomplete</td>
+      {% endif %}
+      <td>
+        <a href="{% url 'edittaskpage' id=task.id %}"><button type="submit" class="btn btn-primary btn-sm">Edit</button></a>
+        <a href="{% url 'completetaskpage' id=task.id %}"><button type="submit" class="btn btn-success btn-sm">Completed</button></a>
+        <a href="{% url 'deletetaskpage' id=task.id %}"><button type="submit" class="btn btn-danger btn-sm">Delete</button></a>
+      </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+  {% else %}
+  <h3 class="text-center">No task here, Please Create Task</h3>
+  {% endif %}
+  {% endblock content %}

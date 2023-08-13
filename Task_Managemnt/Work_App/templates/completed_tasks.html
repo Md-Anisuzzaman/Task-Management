@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+  <h3 class="text-center p-3">Completed Task</h3>
+  <table class="table table-bordered table-striped table-secondary mx-auto" style="width: 80%;">
+    <thead class="table-dark">
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in allTasks %}
+        {% if task.is_completed == True %}
+          <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            {% if task.is_completed == True %}
+              <td>Competed</td>
+            {% endif %}
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

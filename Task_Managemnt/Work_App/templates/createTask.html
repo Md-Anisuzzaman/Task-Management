@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% load crispy_forms_tags %}
+  <form style="width: 35%;height: auto; margin: auto;" class="border border-primary mt-3 p-5" novalidate enctype="multipart/form-data" method="post">
+    <h3 class="text-center text-primary">Create Task</h3>
+    {% csrf_token %}
+    {{ task|crispy }}
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  </form>
+{% endblock %}
